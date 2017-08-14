@@ -1,16 +1,14 @@
 {
-  "author": {
-      "name": "@naterchrdsn"
-  },
-  "dependencies": {},
-  "description": "adds a bunch of random fact commands and fun stuff to Kirbi",
-  "devDependencies": {},
-  "license": "Apache-2.0",
-  "name": "kirbi-random",
-  "optionalDependencies": {},
-  "repository": {
-      "type": "git",
-      "url": "git+https://github.com/Richardson-Media-House/kirbi-random.git"
-  },
-  "version": "0.0.1"
+	"author": "Nate Richardson <hello@naterichardson.com> (https://naterichardson.com)",
+	"dependencies": {},
+	"description": "adds a bunch of random fact commands and fun stuff to Kirbi",
+	"devDependencies": {},
+	"license": "Apache-2.0",
+	"name": "kirbi-random",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Richardson-Media-House/kirbi-random.git"
+	},
+	"version": "0.0.1",
+	"main": "random.js"
 }

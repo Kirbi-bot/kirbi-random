@@ -30,7 +30,7 @@ exports.math_fact = {
 					if (data && data.text) {
 						cb({
 							embed: {
-								color: Kirbi.Config.defaultEmbedColor,
+								color: Kirbi.Config.discord.defaultEmbedColor,
 								title: 'Math Fact',
 								description: data.text
 							}
@@ -60,7 +60,7 @@ exports.year_fact = {
 					if (data && data.text) {
 						cb({
 							embed: {
-								color: Kirbi.Config.defaultEmbedColor,
+								color: Kirbi.Config.discord.defaultEmbedColor,
 								title: 'Year Fact',
 								description: data.text
 							}
@@ -90,7 +90,7 @@ exports.date_fact = {
 					if (data && data.text) {
 						cb({
 							embed: {
-								color: Kirbi.Config.defaultEmbedColor,
+								color: Kirbi.Config.discord.defaultEmbedColor,
 								title: 'Date Fact',
 								description: data.text
 							}
@@ -120,7 +120,7 @@ exports.chucknorris = {
 					if (data && data.value && data.value.joke) {
 						cb({
 							embed: {
-								color: Kirbi.Config.defaultEmbedColor,
+								color: Kirbi.Config.discord.defaultEmbedColor,
 								title: 'Math Fact',
 								description: data.value.joke
 							}
@@ -150,7 +150,7 @@ exports.cat_fact = {
 					if (data && data.fact) {
 						cb({
 							embed: {
-								color: Kirbi.Config.defaultEmbedColor,
+								color: Kirbi.Config.discord.defaultEmbedColor,
 								title: 'Cat Fact',
 								description: data.fact
 							}
@@ -180,7 +180,7 @@ exports.dog_fact = {
 					if (data && data.facts && data.facts[0]) {
 						cb({
 							embed: {
-								color: Kirbi.Config.defaultEmbedColor,
+								color: Kirbi.Config.discord.defaultEmbedColor,
 								title: 'Dog Fact',
 								description: data.facts[0]
 							}
@@ -215,7 +215,7 @@ exports.smifffact = {
 		var randomnumber = Math.floor(Math.random() * (factsData.smiff.length - 1 + 1)) + 1;
 		cb({
 			embed: {
-				color: Kirbi.Config.defaultEmbedColor,
+				color: Kirbi.Config.discord.defaultEmbedColor,
 				title: 'Will Smith Fact',
 				description: factsData.smiff[randomnumber]
 			}
@@ -260,7 +260,7 @@ exports['8ball'] = {
 
 		cb({
 			embed: {
-				color: Kirbi.Config.defaultEmbedColor,
+				color: Kirbi.Config.discord.defaultEmbedColor,
 				title: suffix,
 				description: `:8ball: **${response}**`,
 			}
@@ -280,7 +280,7 @@ exports.choose = {
 
 		cb({
 			embed: {
-				color: Kirbi.Config.defaultEmbedColor,
+				color: Kirbi.Config.discord.defaultEmbedColor,
 				title: `:thinking: **${response}**`,
 			}
 		}, msg);
