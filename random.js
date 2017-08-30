@@ -2,18 +2,7 @@ const request = require('request');
 const factsData = require('./data.js');
 const chalk = require('chalk');
 
-module.exports = function (config, auth) {
-	function resolveMention(usertxt) {
-		var userid = usertxt;
-		if (usertxt.startsWith('<@!')) {
-			userid = usertxt.substr(3, usertxt.length - 4);
-		} else {
-			if (usertxt.startsWith('<@')) {
-				userid = usertxt.substr(2, usertxt.length - 3);
-			}
-		}
-		return userid;
-	}
+module.exports = function (Kirbi) {
 	let commandObject = {
 		commands: [
 			'date_fact',
@@ -40,7 +29,7 @@ module.exports = function (config, auth) {
 							if (data && data.text) {
 								cb({
 									embed: {
-										color: config.discord.defaultEmbedColor,
+										color: Kirbi.Config.discord.defaultEmbedColor,
 										title: 'Math Fact',
 										description: data.text
 									}
@@ -48,7 +37,7 @@ module.exports = function (config, auth) {
 							}
 						} catch (err) {
 							var msgTxt = `command math_fact failed :disappointed_relieved:`;
-							if (config.debug) {
+							if (Kirbi.Config.debug) {
 								msgTxt += `\n${err.stack}`;
 								console.log(chalk.red(err));
 							}
@@ -68,7 +57,7 @@ module.exports = function (config, auth) {
 							if (data && data.text) {
 								cb({
 									embed: {
-										color: config.discord.defaultEmbedColor,
+										color: Kirbi.Config.discord.defaultEmbedColor,
 										title: 'Year Fact',
 										description: data.text
 									}
@@ -76,7 +65,7 @@ module.exports = function (config, auth) {
 							}
 						} catch (err) {
 							var msgTxt = `command year_fact failed :disappointed_relieved:`;
-							if (config.debug) {
+							if (Kirbi.Config.debug) {
 								msgTxt += `\n${err.stack}`;
 								console.log(chalk.red(err));
 							}
@@ -96,7 +85,7 @@ module.exports = function (config, auth) {
 							if (data && data.text) {
 								cb({
 									embed: {
-										color: config.discord.defaultEmbedColor,
+										color: Kirbi.Config.discord.defaultEmbedColor,
 										title: 'Date Fact',
 										description: data.text
 									}
@@ -104,7 +93,7 @@ module.exports = function (config, auth) {
 							}
 						} catch (err) {
 							var msgTxt = `command date_fact failed :disappointed_relieved:`;
-							if (config.debug) {
+							if (Kirbi.Config.debug) {
 								msgTxt += `\n${err.stack}`;
 								console.log(chalk.red(err));
 							}
@@ -124,7 +113,7 @@ module.exports = function (config, auth) {
 							if (data && data.value && data.value.joke) {
 								cb({
 									embed: {
-										color: config.discord.defaultEmbedColor,
+										color: Kirbi.Config.discord.defaultEmbedColor,
 										title: 'Math Fact',
 										description: data.value.joke
 									}
@@ -132,7 +121,7 @@ module.exports = function (config, auth) {
 							}
 						} catch (err) {
 							var msgTxt = `command chucknorris failed :disappointed_relieved:`;
-							if (config.debug) {
+							if (Kirbi.Config.debug) {
 								msgTxt += `\n${err.stack}`;
 								console.log(chalk.red(err));
 							}
@@ -152,7 +141,7 @@ module.exports = function (config, auth) {
 							if (data && data.fact) {
 								cb({
 									embed: {
-										color: config.discord.defaultEmbedColor,
+										color: Kirbi.Config.discord.defaultEmbedColor,
 										title: 'Cat Fact',
 										description: data.fact
 									}
@@ -160,7 +149,7 @@ module.exports = function (config, auth) {
 							}
 						} catch (err) {
 							var msgTxt = `command cat_fact failed :disappointed_relieved:`;
-							if (config.debug) {
+							if (Kirbi.Config.debug) {
 								msgTxt += `\n${err.stack}`;
 								console.log(chalk.red(err));
 							}
@@ -180,7 +169,7 @@ module.exports = function (config, auth) {
 							if (data && data.facts && data.facts[0]) {
 								cb({
 									embed: {
-										color: config.discord.defaultEmbedColor,
+										color: Kirbi.Config.discord.defaultEmbedColor,
 										title: 'Dog Fact',
 										description: data.facts[0]
 									}
@@ -188,7 +177,7 @@ module.exports = function (config, auth) {
 							}
 						} catch (err) {
 							var msgTxt = `command dog_fact failed :disappointed_relieved:`;
-							if (config.debug) {
+							if (Kirbi.Config.debug) {
 								msgTxt += `\n${err.stack}`;
 								console.log(chalk.red(err));
 							}
@@ -212,7 +201,7 @@ module.exports = function (config, auth) {
 				var randomnumber = Math.floor(Math.random() * (factsData.smiff.length - 1 + 1)) + 1;
 				cb({
 					embed: {
-						color: config.discord.defaultEmbedColor,
+						color: Kirbi.Config.discord.defaultEmbedColor,
 						title: 'Will Smith Fact',
 						description: factsData.smiff[randomnumber]
 					}
@@ -224,7 +213,7 @@ module.exports = function (config, auth) {
 			description: 'Tell someone (or everyone) to git gud.',
 			process: (msg, suffix, isEdit, cb) => {
 				cb({
-					reply: resolveMention(suffix),
+					reply: Kirbi.resolveMention(suffix),
 					embed: { image: {url: 'http://i.imgur.com/NqpPXHu.jpg'} }
 				}, msg);
 			}
@@ -241,7 +230,7 @@ module.exports = function (config, auth) {
 		
 				cb({
 					embed: {
-						color: config.discord.defaultEmbedColor,
+						color: Kirbi.Config.discord.defaultEmbedColor,
 						title: `:thinking: **${response}**`,
 					}
 				}, msg);
@@ -263,7 +252,7 @@ module.exports = function (config, auth) {
 	
 			cb({
 				embed: {
-					color: config.discord.defaultEmbedColor,
+					color: Kirbi.Config.discord.defaultEmbedColor,
 					title: suffix,
 					description: `:8ball: **${response}**`,
 				}
