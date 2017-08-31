@@ -1,9 +1,9 @@
+const chalk = require('chalk');
 const request = require('request');
 const factsData = require('./data.js');
-const chalk = require('chalk');
 
 module.exports = function (Kirbi) {
-	let commandObject = {
+	const commandObject = {
 		commands: [
 			'date_fact',
 			'year_fact',
@@ -21,184 +21,196 @@ module.exports = function (Kirbi) {
 			usage: '<random math>',
 			description: 'Gives a Random Math Fact',
 			process: (msg, suffix, isEdit, cb) => {
-				request('http://numbersapi.com/random/math?json',
-					function (err, res, body) {
-						try {
-							if (err) throw err;
-							var data = JSON.parse(body);
-							if (data && data.text) {
-								cb({
-									embed: {
-										color: Kirbi.Config.discord.defaultEmbedColor,
-										title: 'Math Fact',
-										description: data.text
-									}
-								}, msg);
-							}
-						} catch (err) {
-							var msgTxt = `command math_fact failed :disappointed_relieved:`;
-							if (Kirbi.Config.debug) {
-								msgTxt += `\n${err.stack}`;
-								console.log(chalk.red(err));
-							}
-							cb(msgTxt, msg);
+				request('http://numbersapi.com/random/math?json', (err, res, body) => {
+					try {
+						if (err) {
+							throw err;
 						}
-					});
+
+						const data = JSON.parse(body);
+						if (data && data.text) {
+							cb({
+								embed: {
+									color: Kirbi.Config.discord.defaultEmbedColor,
+									title: 'Math Fact',
+									description: data.text
+								}
+							}, msg);
+						}
+					} catch (err) {
+						let msgTxt = `command math_fact failed :disappointed_relieved:`;
+						if (Kirbi.Config.debug) {
+							msgTxt += `\n${err.stack}`;
+							console.log(chalk.red(err));
+						}
+						cb(msgTxt, msg);
+					}
+				});
 			}
 		},
 		year_fact: {
 			description: 'Gives a Random Year Fact',
 			process: (msg, suffix, isEdit, cb) => {
-				request('http://numbersapi.com/random/year?json',
-					function (err, res, body) {
-						try {
-							if (err) throw err;
-							var data = JSON.parse(body);
-							if (data && data.text) {
-								cb({
-									embed: {
-										color: Kirbi.Config.discord.defaultEmbedColor,
-										title: 'Year Fact',
-										description: data.text
-									}
-								}, msg);
-							}
-						} catch (err) {
-							var msgTxt = `command year_fact failed :disappointed_relieved:`;
-							if (Kirbi.Config.debug) {
-								msgTxt += `\n${err.stack}`;
-								console.log(chalk.red(err));
-							}
-							cb(msgTxt, msg);
+				request('http://numbersapi.com/random/year?json', (err, res, body) => {
+					try {
+						if (err) {
+							throw err;
 						}
-					});
+
+						const data = JSON.parse(body);
+						if (data && data.text) {
+							cb({
+								embed: {
+									color: Kirbi.Config.discord.defaultEmbedColor,
+									title: 'Year Fact',
+									description: data.text
+								}
+							}, msg);
+						}
+					} catch (err) {
+						let msgTxt = `command year_fact failed :disappointed_relieved:`;
+						if (Kirbi.Config.debug) {
+							msgTxt += `\n${err.stack}`;
+							console.log(chalk.red(err));
+						}
+						cb(msgTxt, msg);
+					}
+				});
 			}
 		},
 		date_fact: {
 			description: 'Gives a Random Date Fact',
 			process: (msg, suffix, isEdit, cb) => {
-				request('http://numbersapi.com/random/date?json',
-					function (err, res, body) {
-						try {
-							if (err) throw err;
-							var data = JSON.parse(body);
-							if (data && data.text) {
-								cb({
-									embed: {
-										color: Kirbi.Config.discord.defaultEmbedColor,
-										title: 'Date Fact',
-										description: data.text
-									}
-								}, msg);
-							}
-						} catch (err) {
-							var msgTxt = `command date_fact failed :disappointed_relieved:`;
-							if (Kirbi.Config.debug) {
-								msgTxt += `\n${err.stack}`;
-								console.log(chalk.red(err));
-							}
-							cb(msgTxt, msg);
+				request('http://numbersapi.com/random/date?json', (err, res, body) => {
+					try {
+						if (err) {
+							throw err;
 						}
-					});
+
+						const data = JSON.parse(body);
+						if (data && data.text) {
+							cb({
+								embed: {
+									color: Kirbi.Config.discord.defaultEmbedColor,
+									title: 'Date Fact',
+									description: data.text
+								}
+							}, msg);
+						}
+					} catch (err) {
+						let msgTxt = `command date_fact failed :disappointed_relieved:`;
+						if (Kirbi.Config.debug) {
+							msgTxt += `\n${err.stack}`;
+							console.log(chalk.red(err));
+						}
+						cb(msgTxt, msg);
+					}
+				});
 			}
 		},
 		chucknorris: {
 			description: 'Gives a Random Chuck Norris Joke',
 			process: (msg, suffix, isEdit, cb) => {
-				request('http://api.icndb.com/jokes/random',
-					function (err, res, body) {
-						try {
-							if (err) throw err;
-							var data = JSON.parse(body);
-							if (data && data.value && data.value.joke) {
-								cb({
-									embed: {
-										color: Kirbi.Config.discord.defaultEmbedColor,
-										title: 'Math Fact',
-										description: data.value.joke
-									}
-								}, msg);
-							}
-						} catch (err) {
-							var msgTxt = `command chucknorris failed :disappointed_relieved:`;
-							if (Kirbi.Config.debug) {
-								msgTxt += `\n${err.stack}`;
-								console.log(chalk.red(err));
-							}
-							cb(msgTxt, msg);
+				request('http://api.icndb.com/jokes/random', (err, res, body) => {
+					try {
+						if (err) {
+							throw err;
 						}
-					});
+
+						const data = JSON.parse(body);
+						if (data && data.value && data.value.joke) {
+							cb({
+								embed: {
+									color: Kirbi.Config.discord.defaultEmbedColor,
+									title: 'Math Fact',
+									description: data.value.joke
+								}
+							}, msg);
+						}
+					} catch (err) {
+						let msgTxt = `command chucknorris failed :disappointed_relieved:`;
+						if (Kirbi.Config.debug) {
+							msgTxt += `\n${err.stack}`;
+							console.log(chalk.red(err));
+						}
+						cb(msgTxt, msg);
+					}
+				});
 			}
 		},
 		cat_fact: {
 			description: 'Gives a Random Cat Fact',
 			process: (msg, suffix, isEdit, cb) => {
-				request('https://catfact.ninja/fact',
-					function (err, res, body) {
-						try {
-							if (err) throw err;
-							var data = JSON.parse(body);
-							if (data && data.fact) {
-								cb({
-									embed: {
-										color: Kirbi.Config.discord.defaultEmbedColor,
-										title: 'Cat Fact',
-										description: data.fact
-									}
-								}, msg);
-							}
-						} catch (err) {
-							var msgTxt = `command cat_fact failed :disappointed_relieved:`;
-							if (Kirbi.Config.debug) {
-								msgTxt += `\n${err.stack}`;
-								console.log(chalk.red(err));
-							}
-							cb(msgTxt, msg);
+				request('https://catfact.ninja/fact', (err, res, body) => {
+					try {
+						if (err) {
+							throw err;
 						}
-					});
+
+						const data = JSON.parse(body);
+						if (data && data.fact) {
+							cb({
+								embed: {
+									color: Kirbi.Config.discord.defaultEmbedColor,
+									title: 'Cat Fact',
+									description: data.fact
+								}
+							}, msg);
+						}
+					} catch (err) {
+						let msgTxt = `command cat_fact failed :disappointed_relieved:`;
+						if (Kirbi.Config.debug) {
+							msgTxt += `\n${err.stack}`;
+							console.log(chalk.red(err));
+						}
+						cb(msgTxt, msg);
+					}
+				});
 			}
 		},
 		dog_fact: {
 			description: 'Gives a Random Dog Fact',
 			process: (msg, suffix, isEdit, cb) => {
-				request('https://dog-api.kinduff.com/api/facts',
-					function (err, res, body) {
-						try {
-							if (err) throw err;
-							var data = JSON.parse(body);
-							if (data && data.facts && data.facts[0]) {
-								cb({
-									embed: {
-										color: Kirbi.Config.discord.defaultEmbedColor,
-										title: 'Dog Fact',
-										description: data.facts[0]
-									}
-								}, msg);
-							}
-						} catch (err) {
-							var msgTxt = `command dog_fact failed :disappointed_relieved:`;
-							if (Kirbi.Config.debug) {
-								msgTxt += `\n${err.stack}`;
-								console.log(chalk.red(err));
-							}
-							cb(msgTxt, msg);	
+				request('https://dog-api.kinduff.com/api/facts', (err, res, body) => {
+					try {
+						if (err) {
+							throw err;
 						}
-					});
+
+						const data = JSON.parse(body);
+						if (data && data.facts && data.facts[0]) {
+							cb({
+								embed: {
+									color: Kirbi.Config.discord.defaultEmbedColor,
+									title: 'Dog Fact',
+									description: data.facts[0]
+								}
+							}, msg);
+						}
+					} catch (err) {
+						let msgTxt = `command dog_fact failed :disappointed_relieved:`;
+						if (Kirbi.Config.debug) {
+							msgTxt += `\n${err.stack}`;
+							console.log(chalk.red(err));
+						}
+						cb(msgTxt, msg);
+					}
+				});
 			}
 		},
 		bacon: {
 			description: 'Gives You Bacon; Bacon Makes Everything Better...',
 			process: (msg, suffix, isEdit, cb) => {
-				var randomnumber = Math.floor(Math.random() * (factsData.bacon.length - 1 + 1)) + 1;
+				const randomnumber = Math.floor(Math.random() * (factsData.bacon.length - 1 + 1)) + 1;
 				cb({
-					embed: { image: {url: factsData.bacon[randomnumber]} }
+					embed: { image: { url: factsData.bacon[randomnumber] } }
 				}, msg);
 			}
 		},
 		smifffact: {
 			description: 'Blesses you with a fact about Will Smith.',
 			process: (msg, suffix, isEdit, cb) => {
-				var randomnumber = Math.floor(Math.random() * (factsData.smiff.length - 1 + 1)) + 1;
+				const randomnumber = Math.floor(Math.random() * (factsData.smiff.length - 1 + 1)) + 1;
 				cb({
 					embed: {
 						color: Kirbi.Config.discord.defaultEmbedColor,
@@ -214,7 +226,7 @@ module.exports = function (Kirbi) {
 			process: (msg, suffix, isEdit, cb) => {
 				cb({
 					reply: Kirbi.resolveMention(suffix),
-					embed: { image: {url: 'http://i.imgur.com/NqpPXHu.jpg'} }
+					embed: { image: { url: 'http://i.imgur.com/NqpPXHu.jpg' } }
 				}, msg);
 			}
 		},
@@ -224,14 +236,14 @@ module.exports = function (Kirbi) {
 			process: (msg, suffix, isEdit, cb) => {
 				let response = 'Sounds like you\'re out of options.';
 				if (suffix) {
-					let options = suffix.split(',');
+					const options = suffix.split(',');
 					response = `I choose ${options[Math.floor(Math.random() * options.length)].trim()}`;
 				}
-		
+
 				cb({
 					embed: {
 						color: Kirbi.Config.discord.defaultEmbedColor,
-						title: `:thinking: **${response}**`,
+						title: `:thinking: **${response}**`
 					}
 				}, msg);
 			}
@@ -245,16 +257,16 @@ module.exports = function (Kirbi) {
 			let response = 'Not even I have an answer to a question not asked.';
 			if (suffix) {
 				response = 'I don\'t know what to tell you. I\'m all out of answers.';
-				if (factsData.eightBall && factsData.eightBall.length) {
+				if (factsData.eightBall && factsData.eightBall.length > 0) {
 					response = factsData.eightBall[Math.floor(Math.random() * factsData.eightBall.length)];
 				}
 			}
-	
+
 			cb({
 				embed: {
 					color: Kirbi.Config.discord.defaultEmbedColor,
 					title: suffix,
-					description: `:8ball: **${response}**`,
+					description: `:8ball: **${response}**`
 				}
 			}, msg);
 		}
