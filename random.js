@@ -2,7 +2,7 @@ const chalk = require('chalk');
 const request = require('request');
 const factsData = require('./data.js');
 
-module.exports = function (Kirbi) {
+module.exports = Kirbi => {
 	const commandObject = {
 		commands: [
 			'date_fact',
