@@ -232,11 +232,10 @@ module.exports = function (Kirbi) {
 		bacon: {
 			description: 'Gives You Bacon; Bacon Makes Everything Better...',
 			process: (msg, suffix, isEdit, cb) => {
-				const response = randomItem(factsData.bacon);
 				cb({
 					embed: {
 						image: {
-							url: response
+							url: randomItem(factsData.bacon)
 						}
 					}
 				}, msg);
@@ -245,12 +244,11 @@ module.exports = function (Kirbi) {
 		smifffact: {
 			description: 'Blesses you with a fact about Will Smith.',
 			process: (msg, suffix, isEdit, cb) => {
-				const response = randomItem(factsData.smiff);
 				cb({
 					embed: {
 						color: Kirbi.Config.discord.defaultEmbedColor,
 						title: 'Will Smith Fact',
-						description: response
+						description: randomItem(factsData.smiff)
 					}
 				}, msg);
 			}
