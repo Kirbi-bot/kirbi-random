@@ -2,6 +2,37 @@ const chalk = require('chalk');
 const request = require('request');
 const factsData = require('./data.js');
 
+const randomInt = (a, b) => {
+	let min;
+	let max;
+	if (a === null || isNaN(parseInt(a, 10))) {
+		a = 1;
+	}
+	if (b === null || isNaN(parseInt(b, 10))) {
+		b = 1;
+	}
+
+	if (a === b) {
+		return -1;
+	} else if (a < b) {
+		max = parseInt(b, 10);
+		min = parseInt(a, 10);
+	} else {
+		max = parseInt(a, 10);
+		min = parseInt(b, 10);
+	}
+
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+const randomItem = collection => {
+	if (collection === null || collection.length < 1) {
+		return null;
+	}
+
+	return collection[randomInt(collection.length) - 1];
+};
+
 module.exports = function (Kirbi) {
 	const commandObject = {
 		commands: [
@@ -201,12 +232,12 @@ module.exports = function (Kirbi) {
 		bacon: {
 			description: 'Gives You Bacon; Bacon Makes Everything Better...',
 			process: (msg, suffix, isEdit, cb) => {
-				let response = randomItem(factsData.bacon);
+				const response = randomItem(factsData.bacon);
 				cb({
-					embed: { 
-						image: { 
-							url: response 
-						} 
+					embed: {
+						image: {
+							url: response
+						}
 					}
 				}, msg);
 			}
@@ -214,7 +245,7 @@ module.exports = function (Kirbi) {
 		smifffact: {
 			description: 'Blesses you with a fact about Will Smith.',
 			process: (msg, suffix, isEdit, cb) => {
-				let response = randomItem(factsData.smiff);
+				const response = randomItem(factsData.smiff);
 				cb({
 					embed: {
 						color: Kirbi.Config.discord.defaultEmbedColor,
@@ -262,7 +293,7 @@ module.exports = function (Kirbi) {
 			if (suffix) {
 				response = 'I don\'t know what to tell you. I\'m all out of answers.';
 				if (factsData.eightBall && factsData.eightBall.length > 0) {
-					response = randomItem(randomfactsData.eightBall);
+					response = randomItem(factsData.eightBall);
 				}
 			}
 
@@ -274,37 +305,7 @@ module.exports = function (Kirbi) {
 				}
 			}, msg);
 		}
-	}
+	};
 
 	return commandObject;
 };
-
-randomItem = (collection) => {
-	if (collection === null || collection.length < 1) {
-		return null;
-	}
-
-	return collection[randomInt(collection.length) - 1];
-}
-
-randomInt = (a, b) => {
-	let min, max;
-	if (a === null || isNaN(parseInt(a))) {
-		a = 1;
-	}
-	if (b === null || isNaN(parseInt(b))) {
-		b = 1;
-	}
-
-	if (a === b) {
-		return -1;
-	} else if (a < b) {
-		max = parseInt(b);
-		min = parseInt(a);
-	} else {
-		max = parseInt(a);
-		min = parseInt(b);
-	}
-
-	return Math.floor(Math.random() * (max - min + 1)) + min;
-}
