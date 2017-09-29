@@ -26,7 +26,7 @@ const randomInt = (a, b) => {
 };
 
 const randomItem = collection => {
-	if (!collection.isArray() || !collection.length) {
+	if (!collection.isArray() || collection.length < 1) {
 		return null;
 	}
 
