@@ -201,21 +201,25 @@ module.exports = function (Kirbi) {
 		bacon: {
 			description: 'Gives You Bacon; Bacon Makes Everything Better...',
 			process: (msg, suffix, isEdit, cb) => {
-				const randomnumber = Math.floor(Math.random() * (factsData.bacon.length - 1 + 1)) + 1;
+				let response = randomItem(factsData.bacon);
 				cb({
-					embed: { image: { url: factsData.bacon[randomnumber] } }
+					embed: { 
+						image: { 
+							url: response 
+						} 
+					}
 				}, msg);
 			}
 		},
 		smifffact: {
 			description: 'Blesses you with a fact about Will Smith.',
 			process: (msg, suffix, isEdit, cb) => {
-				const randomnumber = Math.floor(Math.random() * (factsData.smiff.length - 1 + 1)) + 1;
+				let response = randomItem(factsData.smiff);
 				cb({
 					embed: {
 						color: Kirbi.Config.discord.defaultEmbedColor,
 						title: 'Will Smith Fact',
-						description: factsData.smiff[randomnumber]
+						description: response
 					}
 				}, msg);
 			}
@@ -237,7 +241,7 @@ module.exports = function (Kirbi) {
 				let response = 'Sounds like you\'re out of options.';
 				if (suffix) {
 					const options = suffix.split(',');
-					response = `I choose ${options[Math.floor(Math.random() * options.length)].trim()}`;
+					response = `I choose ${randomItem(options)}`;
 				}
 
 				cb({
@@ -258,7 +262,7 @@ module.exports = function (Kirbi) {
 			if (suffix) {
 				response = 'I don\'t know what to tell you. I\'m all out of answers.';
 				if (factsData.eightBall && factsData.eightBall.length > 0) {
-					response = factsData.eightBall[Math.floor(Math.random() * factsData.eightBall.length)];
+					response = randomItem(randomfactsData.eightBall);
 				}
 			}
 
@@ -270,7 +274,37 @@ module.exports = function (Kirbi) {
 				}
 			}, msg);
 		}
-	};
+	}
 
 	return commandObject;
 };
+
+randomItem = (collection) => {
+	if (collection === null || collection.length < 1) {
+		return null;
+	}
+
+	return collection[randomInt(collection.length) - 1];
+}
+
+randomInt = (a, b) => {
+	let min, max;
+	if (a === null || isNaN(parseInt(a))) {
+		a = 1;
+	}
+	if (b === null || isNaN(parseInt(b))) {
+		b = 1;
+	}
+
+	if (a === b) {
+		return -1;
+	} else if (a < b) {
+		max = parseInt(b);
+		min = parseInt(a);
+	} else {
+		max = parseInt(a);
+		min = parseInt(b);
+	}
+
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
