@@ -2,6 +2,37 @@ const chalk = require('chalk');
 const request = require('request');
 const factsData = require('./data.js');
 
+const randomInt = (a, b) => {
+	let min;
+	let max;
+	if (a === null || isNaN(parseInt(a, 10))) {
+		a = 1;
+	}
+	if (b === null || isNaN(parseInt(b, 10))) {
+		b = 1;
+	}
+
+	if (a === b) {
+		return -1;
+	} else if (a < b) {
+		max = parseInt(b, 10);
+		min = parseInt(a, 10);
+	} else {
+		max = parseInt(a, 10);
+		min = parseInt(b, 10);
+	}
+
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+const randomItem = collection => {
+	if (!collection.isArray() || collection.length < 1) {
+		return null;
+	}
+
+	return collection[randomInt(collection.length) - 1];
+};
+
 module.exports = function (Kirbi) {
 	const commandObject = {
 		commands: [
@@ -201,21 +232,23 @@ module.exports = function (Kirbi) {
 		bacon: {
 			description: 'Gives You Bacon; Bacon Makes Everything Better...',
 			process: (msg, suffix, isEdit, cb) => {
-				const randomnumber = Math.floor(Math.random() * (factsData.bacon.length - 1 + 1)) + 1;
 				cb({
-					embed: { image: { url: factsData.bacon[randomnumber] } }
+					embed: {
+						image: {
+							url: randomItem(factsData.bacon)
+						}
+					}
 				}, msg);
 			}
 		},
 		smifffact: {
 			description: 'Blesses you with a fact about Will Smith.',
 			process: (msg, suffix, isEdit, cb) => {
-				const randomnumber = Math.floor(Math.random() * (factsData.smiff.length - 1 + 1)) + 1;
 				cb({
 					embed: {
 						color: Kirbi.Config.discord.defaultEmbedColor,
 						title: 'Will Smith Fact',
-						description: factsData.smiff[randomnumber]
+						description: randomItem(factsData.smiff)
 					}
 				}, msg);
 			}
@@ -237,7 +270,7 @@ module.exports = function (Kirbi) {
 				let response = 'Sounds like you\'re out of options.';
 				if (suffix) {
 					const options = suffix.split(',');
-					response = `I choose ${options[Math.floor(Math.random() * options.length)].trim()}`;
+					response = `I choose ${randomItem(options)}`;
 				}
 
 				cb({
@@ -258,7 +291,7 @@ module.exports = function (Kirbi) {
 			if (suffix) {
 				response = 'I don\'t know what to tell you. I\'m all out of answers.';
 				if (factsData.eightBall && factsData.eightBall.length > 0) {
-					response = factsData.eightBall[Math.floor(Math.random() * factsData.eightBall.length)];
+					response = randomItem(factsData.eightBall);
 				}
 			}
 
