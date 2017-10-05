@@ -287,7 +287,7 @@ module.exports = function (Kirbi) {
 			process: (msg, suffix, isEdit, cb) => {
 				let img = null;
 				let response = 'I can\'t find my coin!';
-				let flipResult = randomItem(factsData.coinflip);
+				const flipResult = randomItem(factsData.coinflip);
 				if (flipResult !== null) {
 					response = null;
 					img = flipResult.image;
