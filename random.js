@@ -46,7 +46,8 @@ module.exports = function (Kirbi) {
 			'smifffact',
 			'gitgud',
 			'8ball',
-			'choose'
+			'choose',
+			'coinflip'
 		],
 		math_fact: {
 			usage: '<random math>',
@@ -277,6 +278,28 @@ module.exports = function (Kirbi) {
 					embed: {
 						color: Kirbi.Config.discord.defaultEmbedColor,
 						title: `:thinking: **${response}**`
+					}
+				}, msg);
+			}
+		},
+		coinflip: {
+			description: 'Let the bot flip a coin for you.',
+			process: (msg, suffix, isEdit, cb) => {
+				let img = null;
+				let response = 'I can\'t find my coin!';
+				const flipResult = randomItem(factsData.coinflip);
+				if (flipResult !== null) {
+					response = null;
+					img = flipResult.image;
+				}
+
+				cb({
+					embed: {
+						color: Kirbi.Config.discord.defaultEmbedColor,
+						title: response,
+						thumbnail: {
+							url: img
+						}
 					}
 				}, msg);
 			}
