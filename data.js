@@ -105,5 +105,15 @@ module.exports = {
 		'Yes, unless you run out of memes',
 		'You are doomed',
 		'You can\'t handle the truth'
+	],
+	coinflip: [
+		{
+			text: 'Heads',
+			image: 'https://i.imgur.com/pnyfjwd.png'
+		},
+		{
+			text: 'Tails',
+			image: 'https://i.imgur.com/WXujZjZ.png'
+		}
 	]
 };

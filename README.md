@@ -14,3 +14,4 @@ A module for [Kirbi](https://github.com/richardson-media-house/kirbi), that adds
 - !gitgud [@mention] => tell someone, or everyone, to gitgud!
 - !8ball => ask the magic 8-ball about your problems!
 - !choose => ask the bot to make a choice for you!
+- !coinflip => ask the bot to flip a coin for you!
